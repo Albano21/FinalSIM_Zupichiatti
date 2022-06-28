@@ -1,5 +1,6 @@
 package finalsim.finalsim_zupichiatti;
 
+import javafx.application.Application;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -7,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class FinalSimZupichiattiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FinalSimZupichiattiApplication.class, args);
+		Application.launch(FinalSimFxApplication.class, args);
 	}
 
 }

@@ -1,8 +1,8 @@
 package finalsim.finalsim_zupichiatti.controller.generadorRandom;
 
 
-import k1.grupo.p.simulacionestp5colas.modelo.ParametrosGenerador;
-import k1.grupo.p.simulacionestp5colas.modelo.Pseudoaleatorio;
+import finalsim.finalsim_zupichiatti.modelo.ParametrosGenerador;
+import finalsim.finalsim_zupichiatti.modelo.Pseudoaleatorio;
 
 public interface IGeneradorRandom {
 

@@ -1,9 +1,9 @@
 package finalsim.finalsim_zupichiatti.controller.generadorRandom;
 
+import finalsim.finalsim_zupichiatti.controller.utils.ConstantesGenerador;
+import finalsim.finalsim_zupichiatti.modelo.ParametrosGenerador;
+import finalsim.finalsim_zupichiatti.modelo.Pseudoaleatorio;
 
-import k1.grupo.p.simulacionestp5colas.controller.utils.ConstantesGenerador;
-import k1.grupo.p.simulacionestp5colas.modelo.ParametrosGenerador;
-import k1.grupo.p.simulacionestp5colas.modelo.Pseudoaleatorio;
 import org.springframework.stereotype.Component;
 
 

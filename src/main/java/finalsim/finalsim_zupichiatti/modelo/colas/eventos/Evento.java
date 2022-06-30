@@ -55,4 +55,8 @@ public abstract class Evento implements Comparable<Evento>{
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+
+    public abstract Object clone() throws CloneNotSupportedException;
+
+
 }

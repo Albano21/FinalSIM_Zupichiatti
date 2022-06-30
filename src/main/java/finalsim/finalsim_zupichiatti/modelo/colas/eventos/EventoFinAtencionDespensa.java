@@ -60,20 +60,51 @@ public class EventoFinAtencionDespensa extends Evento{
             // actualiza servidor
             empleadoCaja.setEstado(EstadoServidor.getInstanceServidorOcupado());
             empleadoCaja.setClienteActual(clienteActual);
-            // setea los valores para calcular la variable demora caja
+            // aca se calcula la cantidad de articulos
+            // ver si esta bien pasarle el randomCUBase
+            Pseudoaleatorio randomCantidadArticulos = generadorRandom.siguientePseudoAleatoreo(randomCUBase, parametrosGenerador);
+            int cantidadArticulos;
+            if (randomCantidadArticulos.getRandom() <= 0.39){
+                cantidadArticulos = 1;
+            }
+            else{
+                if(randomCantidadArticulos.getRandom() <= 0.74){
+                    cantidadArticulos = 2;
+                }
+                else{
+                    cantidadArticulos = 3;
+                }
+            }
+            // setea los valores para calcular la variable demora por articulo
             ParametrosCambioDistribucion parametrosCambioDistribucion = new ParametrosCambioDistribucion();
             parametrosCambioDistribucion.setMedia(parametrosNegocio.getMediaDemoraCaja());
             parametrosCambioDistribucion.setDesvEst(parametrosNegocio.getDesviacionEstCaja());
-            // calculo variable
-            VaribaleAleatoria tiempoAtencionCaja = generadorVariableAleatoria
-                    .siguienteRandom(parametrosCambioDistribucion, parametrosGenerador, randomCUBase);
+            // calculo variable demora por articulo y arma los vectores de randoms y demora por articulo
+            VaribaleAleatoria tiempoAtencionArticulo;
+            Pseudoaleatorio[] randomsDemoraPorArticulo = new Pseudoaleatorio[cantidadArticulos];
+            float[] tiemposDemoraPorArticulo = new float[cantidadArticulos];
+            for (int i = 0; i < cantidadArticulos; i++) {
+                tiempoAtencionArticulo = generadorVariableAleatoria
+                        .siguienteRandom(parametrosCambioDistribucion, parametrosGenerador, randomCUBase);
+                randomsDemoraPorArticulo[i] = tiempoAtencionArticulo.getSiguienteRandomBase();
+                tiemposDemoraPorArticulo[i] = tiempoAtencionArticulo.getRandomGenerado();
+                randomCUBase = tiempoAtencionArticulo.getSiguienteRandomBase();
+            }
+            // calcula el tiempo total
+            float tiempoAtencionCaja = 0;
+            for (float t : tiemposDemoraPorArticulo) {
+                tiempoAtencionCaja += t;
+            }
+
             // crea evento fin atencion caja
             EventoFinAtencionCaja eventoFinAtencionCaja = new EventoFinAtencionCaja();
-            eventoFinAtencionCaja.setRandomAtencionCaja(randomCUBase);
-            eventoFinAtencionCaja.setTiempoAtencionCaja(tiempoAtencionCaja.getRandomGenerado());
+            eventoFinAtencionCaja.setRandomCantidadArticulos(randomCantidadArticulos);
+            eventoFinAtencionCaja.setCantidadArticulos(cantidadArticulos);
+            eventoFinAtencionCaja.setRandomsDemoraPorArticulo(randomsDemoraPorArticulo);
+            eventoFinAtencionCaja.setTiemposDemoraPorArticulo(tiemposDemoraPorArticulo);
+            eventoFinAtencionCaja.setTiempoAtencionCaja(tiempoAtencionCaja);
             eventoFinAtencionCaja.setMomentoEvento(vectorEstadoActual.getReloj()+eventoFinAtencionCaja.getTiempoAtencionCaja());
             eventoFinAtencionCaja.setCliente(clienteActual);
-            randomCUBase = tiempoAtencionCaja.getSiguienteRandomBase();
             // se actualiza el evento fin atencion caja
             vectorEstadoActual.actualizarEventoFinAtencionCaja(eventoFinAtencionCaja);
             heapEventos.add(eventoFinAtencionCaja);

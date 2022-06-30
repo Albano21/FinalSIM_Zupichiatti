@@ -54,7 +54,7 @@ public class EventoFinAtencionPanaderia extends Evento{
             clienteActual.setEstado(EstadoCliente.getInstanceEsperandoCaja());
         }
         // si el empleado caja esta libre
-        else{
+        else {
             // actualiza cliente
             clienteActual.setEstado(EstadoCliente.getInstanceSiendoAtendidoCaja());
             clienteActual.setServidorActual(empleadoCaja);
@@ -70,9 +70,9 @@ public class EventoFinAtencionPanaderia extends Evento{
                     .siguienteRandom(parametrosCambioDistribucion, parametrosGenerador, randomCUBase);
             // crea evento fin atencion caja
             EventoFinAtencionCaja eventoFinAtencionCaja = new EventoFinAtencionCaja();
-            eventoFinAtencionCaja.setRandomAtencionCaja(randomCUBase);
+
             eventoFinAtencionCaja.setTiempoAtencionCaja(tiempoAtencionCaja.getRandomGenerado());
-            eventoFinAtencionCaja.setMomentoEvento(vectorEstadoActual.getReloj()+eventoFinAtencionCaja.getTiempoAtencionCaja());
+            eventoFinAtencionCaja.setMomentoEvento(vectorEstadoActual.getReloj() + eventoFinAtencionCaja.getTiempoAtencionCaja());
             eventoFinAtencionCaja.setCliente(clienteActual);
             randomCUBase = tiempoAtencionCaja.getSiguienteRandomBase();
             // se actualiza el evento fin atencion caja

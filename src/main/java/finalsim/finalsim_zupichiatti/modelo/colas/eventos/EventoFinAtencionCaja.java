@@ -13,8 +13,18 @@ import lombok.Data;
 @Data
 public class EventoFinAtencionCaja extends Evento{
 
-    private Pseudoaleatorio randomAtencionCaja;
+    private Pseudoaleatorio randomCantidadArticulos;
+
+    private int cantidadArticulos;
+
+    private Pseudoaleatorio[] randomsDemoraPorArticulo;
+
+    private float[] tiemposDemoraPorArticulo;
     private float tiempoAtencionCaja;
+
+
+
+
     private Cliente clienteAtencionFinalizada;
 
     // aca va toda la logica, se supone que aca se muere el objeto cliente
@@ -27,7 +37,7 @@ public class EventoFinAtencionCaja extends Evento{
     public Object clone() throws CloneNotSupportedException{
         EventoFinAtencionCaja evento = new EventoFinAtencionCaja();
         evento.setMomentoEvento(super.getMomentoEvento());
-        evento.setRandomAtencionCaja((Pseudoaleatorio) randomAtencionCaja.clone());
+
         evento.setTiempoAtencionCaja(tiempoAtencionCaja);
         return evento;
 

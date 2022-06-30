@@ -64,10 +64,12 @@ public class EventoLlegadaCliente extends Evento{
         if (randomProxDestino.getRandom() >= 0 && randomProxDestino.getRandom() <= 0.34 ){
             //aca tengo que setear que va a la despensa
             EventoFinAtencionDespensa eventoFinAtencionDespensa = new EventoFinAtencionDespensa();
+            proximaLlegada.setRandomDestinoCliente(randomProxDestino);
             proximaLlegada.setDestinoCliente(eventoFinAtencionDespensa);
         }
         else{
             EventoFinAtencionPanaderia eventoFinAtencionPanaderia = new EventoFinAtencionPanaderia();
+            proximaLlegada.setRandomDestinoCliente(randomProxDestino);
             proximaLlegada.setDestinoCliente(eventoFinAtencionPanaderia);
         }
 
@@ -183,6 +185,8 @@ public class EventoLlegadaCliente extends Evento{
         evento.setMomentoEvento(super.getMomentoEvento());
         evento.setRandomProxLlegada((Pseudoaleatorio) randomProxLlegada.clone());
         evento.setTiempoHastaProximaLlegada(tiempoHastaProximaLlegada);
+        evento.setRandomDestinoCliente((Pseudoaleatorio) randomDestinoCliente.clone());
+        evento.setDestinoCliente((Evento) destinoCliente.clone());
         return evento;
     }
 

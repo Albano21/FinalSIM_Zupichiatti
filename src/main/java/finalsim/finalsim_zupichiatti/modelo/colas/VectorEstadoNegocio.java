@@ -164,6 +164,36 @@ public class VectorEstadoNegocio {
         finAtencionPanaderia[empleadoPanaderia.getId()-1] = evento;
     }
 
+    public Cliente buscarClientePorId(int id){
+        for(Cliente cliente: clientes){
+            if(cliente.tieneId(id)){
+                return cliente;
+            }
+        }
+        return null;
+    }
+
+    public void agregarClienteColaCaja(Cliente cliente){
+        if(colaCaja == null) colaCaja = new ArrayDeque<>();
+        colaCaja.add(cliente);
+    }
+
+    public void actualizarEventoFinAtencionCaja(EventoFinAtencionCaja evento){
+        finAtencionCaja = evento;
+    }
+
+    public void acumularTiempoOcioso(){
+        float tiepoAAcumular = reloj - empleadoCaja.getMomentoLiberacion();
+        acumuladorTiempoOciosoCaja += tiepoAAcumular;
+    }
+
+    public Cliente getSiguienteClienteColaDespensa(){
+        if (colaDespensa != null) {
+            return colaDespensa.poll();
+        }
+        return null;
+    }
+
 
 
 

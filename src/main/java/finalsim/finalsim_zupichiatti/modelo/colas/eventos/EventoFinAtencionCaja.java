@@ -29,6 +29,10 @@ public class EventoFinAtencionCaja extends Evento{
 
     private Cliente clienteAtencionFinalizada;
 
+    public EventoFinAtencionCaja(){
+        this.setNombreEvento("Fin At. Caja");
+    }
+
     // aca va toda la logica, se supone que aca se muere el objeto cliente
     @Override
     public VectorEstadoNegocio procesarEvento(VectorEstadoNegocio estadoAnterior,

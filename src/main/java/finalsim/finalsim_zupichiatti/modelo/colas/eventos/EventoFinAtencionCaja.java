@@ -22,9 +22,6 @@ public class EventoFinAtencionCaja extends Evento{
     private float[] tiemposDemoraPorArticulo;
     private float tiempoAtencionCaja;
 
-
-
-
     private Cliente clienteAtencionFinalizada;
 
     // aca va toda la logica, se supone que aca se muere el objeto cliente
@@ -36,9 +33,13 @@ public class EventoFinAtencionCaja extends Evento{
     @Override
     public Object clone() throws CloneNotSupportedException{
         EventoFinAtencionCaja evento = new EventoFinAtencionCaja();
+        evento.setRandomCantidadArticulos((Pseudoaleatorio) randomCantidadArticulos.clone());
+        evento.setCantidadArticulos(cantidadArticulos);
+        evento.setRandomsDemoraPorArticulo(randomsDemoraPorArticulo.clone());
+        evento.setTiemposDemoraPorArticulo(tiemposDemoraPorArticulo.clone());
+        evento.setTiempoAtencionCaja(tiempoAtencionCaja);
         evento.setMomentoEvento(super.getMomentoEvento());
 
-        evento.setTiempoAtencionCaja(tiempoAtencionCaja);
         return evento;
 
     }

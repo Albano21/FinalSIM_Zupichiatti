@@ -44,6 +44,7 @@ public class EventoFinAtencionDespensa extends Evento{
         Cliente clienteActual = vectorEstadoActual.buscarClientePorId(cliente.getNumeroCliente());
 
         Servidor empleadoDespensa = vectorEstadoActual.getEmpleadoDespensa();
+
         //-------------------MANEJO DEL FIN AT ACTUAL-------------------
         // verifica si esta disponible el empleado de caja
         Servidor empleadoCaja = this.obtenerEmpleadoCaja(vectorEstadoActual);

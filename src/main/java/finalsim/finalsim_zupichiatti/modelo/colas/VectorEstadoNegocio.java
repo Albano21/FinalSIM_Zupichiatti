@@ -1,11 +1,13 @@
 package finalsim.finalsim_zupichiatti.modelo.colas;
 
+import finalsim.finalsim_zupichiatti.modelo.Pseudoaleatorio;
 import finalsim.finalsim_zupichiatti.modelo.colas.eventos.*;
 import finalsim.finalsim_zupichiatti.modelo.colas.servidores.EmpleadoPanaderia;
 import finalsim.finalsim_zupichiatti.modelo.colas.servidores.Servidor;
 import lombok.Data;
 import lombok.SneakyThrows;
 
+import javax.print.PrintService;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -38,6 +40,8 @@ public class VectorEstadoNegocio {
     private int maximoLargoColaPanaderia;
     // Clientes
     private List<Cliente> clientes;
+
+    private Pseudoaleatorio siguientePseudoCU;
 
 
     @Override
@@ -120,8 +124,45 @@ public class VectorEstadoNegocio {
 
     }
 
-    // aca van mas metodos segun que me haga falta actualizar desde cada evento
+    // aca van mas metodos segun lo que me haga falta actualizar desde cada evento
+    public void agregarCliente(Cliente cliente){
+        if (clientes == null) clientes = new LinkedList<>();
+        clientes.add(cliente);
+    }
 
+    public void agregarClienteColaDespensa(Cliente cliente){
+        if (colaDespensa == null) colaDespensa = new ArrayDeque<>();
+        colaDespensa.add(cliente);
+    }
+
+    public void actualizarEventoFinAtencionDespensa(EventoFinAtencionDespensa evento){
+        finAtencionDespensa = evento;
+    }
+
+    public void actualizarMaximoLargoColaDespensa(){
+        if (maximoLargoColaDespensa < colaDespensa.size()){
+            maximoLargoColaDespensa = colaDespensa.size();
+        }
+    }
+
+    public int getProximoNumeroCliente(){
+        return (clientes.size()+1);
+    }
+
+    public void agregarClienteColaPanaderia(Cliente cliente){
+        if (colaPanaderia == null) colaPanaderia = new ArrayDeque<>();
+        colaPanaderia.add(cliente);
+    }
+
+    public void actualizarMaximoLargoColaPanaderia(){
+        if (maximoLargoColaPanaderia < colaPanaderia.size()){
+            maximoLargoColaPanaderia = colaPanaderia.size();
+        }
+    }
+
+    public void actualizarEventoFinAtencionPanaderia(EventoFinAtencionPanaderia evento, Servidor empleadoPanaderia){
+        finAtencionPanaderia[empleadoPanaderia.getId()-1] = evento;
+    }
 
 
 

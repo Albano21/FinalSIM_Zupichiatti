@@ -80,7 +80,7 @@ public class EventoFinAtencionDespensa extends Evento{
             // actualiza el acumulador ded tiempo ocioso empleado caja
             vectorEstadoActual.acumularTiempoOcioso();
         }
-        //--------------------MANEJO PROXIMA ATENCION CAJA---------------
+        //--------------------MANEJO PROXIMA ATENCION DESPENSA---------------
         Cliente clienteEsperaColaDespensa = vectorEstadoActual.getSiguienteClienteColaDespensa();
         // si no hay clientes en la cola
         if(clienteEsperaColaDespensa == null){

@@ -194,6 +194,20 @@ public class VectorEstadoNegocio {
         return null;
     }
 
+    public Servidor getEmpleadoPanaderiaPorId(int id){
+        for (Servidor servidor : empleadosPanaderia){
+            if(servidor.getId() == id) return servidor;
+        }
+        return null;
+    }
+
+    public Cliente getSiguienteClienteColaPanaderia(){
+        if (colaPanaderia != null){
+            return  colaPanaderia.poll();
+        }
+        return null;
+    }
+
 
 
 

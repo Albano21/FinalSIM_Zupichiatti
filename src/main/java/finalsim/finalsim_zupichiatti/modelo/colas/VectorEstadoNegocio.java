@@ -208,6 +208,17 @@ public class VectorEstadoNegocio {
         return null;
     }
 
+    public Cliente getSiguienteClienteColaCaja(){
+        if(colaCaja != null){
+            return colaCaja.poll();
+        }
+        return null;
+    }
+
+    public void incrementarContadorDeArticulos(int cantNueva){
+        contadorArticulos += cantNueva;
+    }
+
 
 
 

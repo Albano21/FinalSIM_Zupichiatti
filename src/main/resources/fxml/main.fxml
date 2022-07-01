@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="657.0" prefWidth="515.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalsim.finalsim_zupichiatti.fxcontroller.MainFxController">
+   <children>
+      <VBox layoutX="-1.0" layoutY="-1.0" prefHeight="666.0" prefWidth="516.0">
+         <children>
+            <AnchorPane prefHeight="63.0" prefWidth="514.0">
+               <children>
+                  <FlowPane alignment="CENTER" prefHeight="63.0" prefWidth="514.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Panaderia Y Despensa">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </FlowPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="404.0" prefWidth="516.0">
+               <children>
+                  <TitledPane animated="false" collapsible="false" prefHeight="371.0" prefWidth="514.0" text="Parametros de Negocio">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="383.0" prefWidth="513.0">
+                           <children>
+                              <VBox layoutY="2.0" prefHeight="338.0" prefWidth="514.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="398.0">
+                                       <children>
+                                          <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="20.0" prefWidth="270.0" text="    Media Llegada por Mnuto:">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="tf_mediaLlegada" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="398.0">
+                                       <children>
+                                          <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="20.0" prefWidth="270.0" text="    Minimo Demora Despensa:">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="tf_minDemoraDespensa" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="398.0">
+                                       <children>
+                                          <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="20.0" prefWidth="270.0" text="    Maximo Demora Despensa:">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="tf_maxDemoraDespensa" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="398.0">
+                                       <children>
+                                          <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="20.0" prefWidth="270.0" text="    Minimo Demora Panaderia:">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="tf_minDemoraPanaderia" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="398.0">
+                                       <children>
+                                          <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="20.0" prefWidth="270.0" text="    Maximo Demora Panaderia:">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="tf_maxDemoraPanaderia" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="398.0">
+                                       <children>
+                                          <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="20.0" prefWidth="270.0" text="    Media Demora Caja:">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="tf_MediaDemoraCaja" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="514.0">
+                                       <children>
+                                          <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="20.0" prefWidth="270.0" text="    Desviacion Estandar Demora Caja:">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="tf_desviacionEstandarCaja" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TitledPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="174.0" prefWidth="516.0">
+               <children>
+                  <TitledPane animated="false" collapsible="false" prefHeight="174.0" prefWidth="516.0" text="Parametros de Simulacion">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="118.0" prefWidth="514.0">
+                           <children>
+                              <VBox layoutX="1.0" layoutY="-2.0" prefHeight="146.0" prefWidth="516.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="524.0">
+                                       <children>
+                                          <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="20.0" prefWidth="270.0" text="    Cantidad Minutos:">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="tf_cantMinutos" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="524.0">
+                                       <children>
+                                          <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="20.0" prefWidth="270.0" text="    Cantidad de Filas a Mostrar:">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="tf_cantidadFilas" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="524.0">
+                                       <children>
+                                          <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="20.0" prefWidth="270.0" text="    Primer Fila a Mostrar:">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="tf_primerFila" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TitledPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="btn_simular" layoutX="230.0" layoutY="14.0" mnemonicParsing="false" onAction="#generarSimulacion" text="Simular">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

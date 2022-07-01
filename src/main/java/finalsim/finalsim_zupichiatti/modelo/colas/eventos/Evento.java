@@ -9,6 +9,8 @@ import finalsim.finalsim_zupichiatti.modelo.colas.ParametrosNegocio;
 import finalsim.finalsim_zupichiatti.modelo.colas.VectorEstadoNegocio;
 import finalsim.finalsim_zupichiatti.modelo.estructurasDatos.TSBHeap;
 
+import java.util.Map;
+
 public abstract class Evento implements Comparable<Evento>{
 
     //Representa el momento en el que se va a producir el evento
@@ -25,7 +27,7 @@ public abstract class Evento implements Comparable<Evento>{
                                                        Pseudoaleatorio randomCUBase,
                                                        IGeneradorRandom generadorRandom,
                                                        ParametrosNegocio parametrosNegocio,
-                                                       ICambioDistribucion generadorVariableAleatoria,
+                                                       Map<String, ICambioDistribucion> generadoresVariableAleatoria,
                                                        TSBHeap<Evento> heapEventos);
     @Override
     public int compareTo(Evento evento){

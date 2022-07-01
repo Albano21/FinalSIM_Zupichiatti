@@ -40,8 +40,11 @@ public class VectorEstadoNegocio {
     private int maximoLargoColaPanaderia;
     // Clientes
     private List<Cliente> clientes;
+    private int contadorClientes;
 
     private Pseudoaleatorio siguientePseudoCU;
+
+
 
 
     @Override
@@ -65,6 +68,7 @@ public class VectorEstadoNegocio {
         nuevoVector.setColaCaja(new ArrayDeque<>(colaCaja));
         // Clientes
         this.clonarClientes(nuevoVector);
+        nuevoVector.setContadorClientes(contadorClientes);
         // Eventos
         this.clonarEventos(nuevoVector);
         nuevoVector.setFinSimulacion(finSimulacion);
@@ -128,6 +132,7 @@ public class VectorEstadoNegocio {
     public void agregarCliente(Cliente cliente){
         if (clientes == null) clientes = new LinkedList<>();
         clientes.add(cliente);
+        contadorClientes++;
     }
 
     public void agregarClienteColaDespensa(Cliente cliente){
@@ -146,7 +151,7 @@ public class VectorEstadoNegocio {
     }
 
     public int getProximoNumeroCliente(){
-        return (clientes.size()+1);
+        return contadorClientes+1;
     }
 
     public void agregarClienteColaPanaderia(Cliente cliente){

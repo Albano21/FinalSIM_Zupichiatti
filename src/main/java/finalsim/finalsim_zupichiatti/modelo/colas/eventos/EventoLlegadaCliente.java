@@ -1,5 +1,7 @@
 package finalsim.finalsim_zupichiatti.modelo.colas.eventos;
 
+import finalsim.finalsim_zupichiatti.controller.cambioDistribucion.CambioDistribucionExponencialNeg;
+import finalsim.finalsim_zupichiatti.controller.cambioDistribucion.CambioDistribucionUniformeAB;
 import finalsim.finalsim_zupichiatti.controller.cambioDistribucion.ICambioDistribucion;
 import finalsim.finalsim_zupichiatti.controller.generadorRandom.IGeneradorRandom;
 import finalsim.finalsim_zupichiatti.modelo.ParametrosCambioDistribucion;
@@ -14,6 +16,8 @@ import finalsim.finalsim_zupichiatti.modelo.colas.servidores.EstadoServidor;
 import finalsim.finalsim_zupichiatti.modelo.colas.servidores.Servidor;
 import finalsim.finalsim_zupichiatti.modelo.estructurasDatos.TSBHeap;
 import lombok.Data;
+
+import java.util.Map;
 
 @Data
 public class EventoLlegadaCliente extends Evento{
@@ -35,7 +39,7 @@ public class EventoLlegadaCliente extends Evento{
                                               Pseudoaleatorio randomCUBase,
                                               IGeneradorRandom generadorRandom,
                                               ParametrosNegocio parametrosNegocio,
-                                              ICambioDistribucion generadorVariableAleatoria,
+                                              Map<String, ICambioDistribucion> generadoresVariableAleatoria,
                                               TSBHeap<Evento> heapEventos) {
 
         VectorEstadoNegocio vectorEstadoActual = (VectorEstadoNegocio) estadoAnterior.clone();
@@ -47,7 +51,8 @@ public class EventoLlegadaCliente extends Evento{
         parametrosCambioDistribucion.setPresicion(parametrosGenerador.getPresicion());
         //--------------------------PROXIMA LLEGADA----------------------
         // saca el proximo random y variable para la proxima llegada
-        VaribaleAleatoria tiempoProximaLlegada = generadorVariableAleatoria.
+        CambioDistribucionExponencialNeg generadorExpNeg = (CambioDistribucionExponencialNeg) generadoresVariableAleatoria.get("EXP_NEG");
+        VaribaleAleatoria tiempoProximaLlegada = generadorExpNeg.
                 siguienteRandom(parametrosCambioDistribucion,parametrosGenerador,randomCUBase);
         randomCUBase = tiempoProximaLlegada.getSiguienteRandomBase();
 
@@ -78,6 +83,9 @@ public class EventoLlegadaCliente extends Evento{
         heapEventos.add(proximaLlegada);
 
         //-----------------------MANEJO LLEGADA ACTUAL-------------------
+
+        // hago el generador uniforme AB que se va a usar para fin at despensa o panaderia segun corresponda
+        CambioDistribucionUniformeAB generadorUniformeAB = (CambioDistribucionUniformeAB) generadoresVariableAleatoria.get("UNIFORME");
         Cliente cliente = new Cliente();
 
         //aca seria si el destino es despensa
@@ -103,7 +111,7 @@ public class EventoLlegadaCliente extends Evento{
                 parametrosCambioDistribucion.setUnifA(parametrosNegocio.getMinimoDemoraDespensa());
                 parametrosCambioDistribucion.setUnifB(parametrosNegocio.getMaximoDemoraDespensa());
                 // calculo variable
-                VaribaleAleatoria tiempoAtencionDespensa = generadorVariableAleatoria
+                VaribaleAleatoria tiempoAtencionDespensa = generadorUniformeAB
                         .siguienteRandom(parametrosCambioDistribucion, parametrosGenerador, randomCUBase);
                 randomCUBase = tiempoAtencionDespensa.getSiguienteRandomBase();
                 //crea evento fin at despensa con sus datos
@@ -143,7 +151,7 @@ public class EventoLlegadaCliente extends Evento{
                 parametrosCambioDistribucion.setUnifA(parametrosNegocio.getMinimoDemoraPanaderia());
                 parametrosCambioDistribucion.setUnifB(parametrosNegocio.getMaximoDemoraPanaderia());
                 // calculo variable
-                VaribaleAleatoria tiempoAtencionPanaderia = generadorVariableAleatoria
+                VaribaleAleatoria tiempoAtencionPanaderia = generadorUniformeAB
                         .siguienteRandom(parametrosCambioDistribucion, parametrosGenerador, randomCUBase);
                 randomCUBase = tiempoAtencionPanaderia.getSiguienteRandomBase();
                 // crea evento fin at. panaderia con sus datos

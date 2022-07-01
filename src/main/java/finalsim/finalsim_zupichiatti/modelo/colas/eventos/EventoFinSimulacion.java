@@ -8,6 +8,8 @@ import finalsim.finalsim_zupichiatti.modelo.colas.ParametrosNegocio;
 import finalsim.finalsim_zupichiatti.modelo.colas.VectorEstadoNegocio;
 import finalsim.finalsim_zupichiatti.modelo.estructurasDatos.TSBHeap;
 
+import java.util.Map;
+
 public class EventoFinSimulacion extends Evento{
 
     public EventoFinSimulacion() {
@@ -19,7 +21,7 @@ public class EventoFinSimulacion extends Evento{
                                               Pseudoaleatorio randomCUBase,
                                               IGeneradorRandom generadorRandom,
                                               ParametrosNegocio parametrosNegocio,
-                                              ICambioDistribucion generadorVariableAleatoria,
+                                              Map<String, ICambioDistribucion> generadoresVariableAleatoria,
                                               TSBHeap<Evento> heapEventos) {
 
         VectorEstadoNegocio vectorEstadoActual = (VectorEstadoNegocio) estadoAnterior.clone();

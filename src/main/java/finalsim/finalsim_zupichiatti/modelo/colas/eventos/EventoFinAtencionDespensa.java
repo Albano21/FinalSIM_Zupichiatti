@@ -1,5 +1,7 @@
 package finalsim.finalsim_zupichiatti.modelo.colas.eventos;
 
+import finalsim.finalsim_zupichiatti.controller.cambioDistribucion.CambioDistribucionNormalConvolucion;
+import finalsim.finalsim_zupichiatti.controller.cambioDistribucion.CambioDistribucionUniformeAB;
 import finalsim.finalsim_zupichiatti.controller.cambioDistribucion.ICambioDistribucion;
 import finalsim.finalsim_zupichiatti.controller.generadorRandom.IGeneradorRandom;
 import finalsim.finalsim_zupichiatti.modelo.ParametrosCambioDistribucion;
@@ -14,6 +16,8 @@ import finalsim.finalsim_zupichiatti.modelo.colas.servidores.EstadoServidor;
 import finalsim.finalsim_zupichiatti.modelo.colas.servidores.Servidor;
 import finalsim.finalsim_zupichiatti.modelo.estructurasDatos.TSBHeap;
 import lombok.Data;
+
+import java.util.Map;
 
 @Data
 public class EventoFinAtencionDespensa extends Evento{
@@ -32,7 +36,7 @@ public class EventoFinAtencionDespensa extends Evento{
                                               Pseudoaleatorio randomCUBase,
                                               IGeneradorRandom generadorRandom,
                                               ParametrosNegocio parametrosNegocio,
-                                              ICambioDistribucion generadorVariableAleatoria,
+                                              Map<String, ICambioDistribucion> generadoresVariableAleatoria,
                                               TSBHeap<Evento> heapEventos) {
 
         VectorEstadoNegocio vectorEstadoActual = (VectorEstadoNegocio) estadoAnterior.clone();
@@ -80,12 +84,14 @@ public class EventoFinAtencionDespensa extends Evento{
             ParametrosCambioDistribucion parametrosCambioDistribucion = new ParametrosCambioDistribucion();
             parametrosCambioDistribucion.setMedia(parametrosNegocio.getMediaDemoraCaja());
             parametrosCambioDistribucion.setDesvEst(parametrosNegocio.getDesviacionEstCaja());
+            // busco el generador normal
+            CambioDistribucionNormalConvolucion generadorNormal = (CambioDistribucionNormalConvolucion) generadoresVariableAleatoria.get("NORMAL_CONVOLUCION");
             // calculo variable demora por articulo y arma los vectores de randoms y demora por articulo
             VaribaleAleatoria tiempoAtencionArticulo;
             Pseudoaleatorio[] randomsDemoraPorArticulo = new Pseudoaleatorio[cantidadArticulos];
             float[] tiemposDemoraPorArticulo = new float[cantidadArticulos];
             for (int i = 0; i < cantidadArticulos; i++) {
-                tiempoAtencionArticulo = generadorVariableAleatoria
+                tiempoAtencionArticulo = generadorNormal
                         .siguienteRandom(parametrosCambioDistribucion, parametrosGenerador, randomCUBase);
                 randomsDemoraPorArticulo[i] = tiempoAtencionArticulo.getSiguienteRandomBase();
                 tiemposDemoraPorArticulo[i] = tiempoAtencionArticulo.getRandomGenerado();
@@ -137,8 +143,10 @@ public class EventoFinAtencionDespensa extends Evento{
             parametrosCambioDistribucion.setUnifA(parametrosNegocio.getMinimoDemoraDespensa());
             parametrosCambioDistribucion.setUnifB(parametrosNegocio.getMaximoDemoraDespensa());
             parametrosCambioDistribucion.setPresicion(parametrosGenerador.getPresicion());
+            // busco el generador UniformeAB
+            CambioDistribucionUniformeAB generadorUniformeAB = (CambioDistribucionUniformeAB) generadoresVariableAleatoria.get("UNIFORME");
             // calculo variable
-            VaribaleAleatoria tiempoAtencionDespensa = generadorVariableAleatoria
+            VaribaleAleatoria tiempoAtencionDespensa = generadorUniformeAB
                     .siguienteRandom(parametrosCambioDistribucion, parametrosGenerador, randomCUBase);
             // crea evento fin at despensa con sus datos
             EventoFinAtencionDespensa siguienteFinAtencionDespensa = new EventoFinAtencionDespensa();

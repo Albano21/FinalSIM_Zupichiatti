@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="549.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalsim.finalsim_zupichiatti.fxcontroller.ResultadoFxController">
+   <children>
+      <VBox layoutX="-2.0" layoutY="-5.0" prefHeight="580.0" prefWidth="870.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="54.0" prefWidth="870.0" text="Simulación Panadería y Despensa">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <AnchorPane prefHeight="338.0" prefWidth="870.0">
+               <children>
+                  <TitledPane animated="false" collapsible="false" layoutX="14.0" layoutY="14.0" prefHeight="357.0" prefWidth="844.0" text="Tabla Simulación">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <content>
+                        <TableView fx:id="tv_Simulacion" prefHeight="322.0" prefWidth="842.0" />
+                     </content>
+                  </TitledPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="153.0" prefWidth="870.0">
+               <children>
+                  <TitledPane animated="false" collapsible="false" layoutX="14.0" prefHeight="143.0" prefWidth="844.0" text="Resultados">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="105.0" prefWidth="842.0">
+                           <children>
+                              <VBox layoutY="1.0" prefHeight="110.0" prefWidth="844.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="844.0">
+                                       <children>
+                                          <Label prefHeight="20.0" prefWidth="207.0" text="    Cantidad de articulos vendidos:" />
+                                          <TextField fx:id="tf_cantidadArticulos" />
+                                          <Label prefHeight="18.0" prefWidth="58.0" text=" unid." />
+                                          <Label prefHeight="18.0" prefWidth="217.0" text="        Porcentaje tiempo ocioso caja:" />
+                                          <TextField fx:id="tf_porcentajeOciosoCaja" />
+                                          <Label text=" %" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="844.0">
+                                       <children>
+                                          <Label prefHeight="18.0" prefWidth="128.0" text="    Cola max. despensa:" />
+                                          <TextField fx:id="tf_colaMaxDespensa" />
+                                          <Label prefHeight="18.0" prefWidth="125.0" text="   Cola max panadería:" />
+                                          <TextField fx:id="tf_colaMaxPanaderia" />
+                                          <Label prefHeight="18.0" prefWidth="122.0" text="   Caja debe ayudar a:" />
+                                          <TextField fx:id="tf_cajaAyudaA" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TitledPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

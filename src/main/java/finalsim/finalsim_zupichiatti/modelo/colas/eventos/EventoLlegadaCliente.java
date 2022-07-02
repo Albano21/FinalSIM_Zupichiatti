@@ -198,4 +198,13 @@ public class EventoLlegadaCliente extends Evento{
         return evento;
     }
 
+    public String getNombreDestinoCliente(){
+        if (destinoCliente.getClass().equals(EventoFinAtencionDespensa.class)){
+            return "Despensa";
+        }
+        else{
+            return "Panaderia";
+        }
+    }
+
 }

@@ -40,6 +40,14 @@ public class ResultadoFxController {
 
     public void mostrarResultadoSimulacion(List<VectorEstadoNegocio> resultadoSimulacion){
 
+        tv_Simulacion.getColumns().clear();
+        List<VectorEstadoDtoActual> resultadoActual = this.mapVectoresEstado(resultadoSimulacion);
+
+        VectorEstadoNegocio vectorFinSim = resultadoSimulacion.get(resultadoSimulacion.size()-1);
+        this.calcularEstadisticas(vectorFinSim);
+        tv_Simulacion.getItems().addAll(resultadoActual);
+        tv_Simulacion.refresh();
+        this.generarColumnasSimulacion();
 
     }
 
@@ -91,9 +99,9 @@ public class ResultadoFxController {
     private void generarColumnasSimulacion(){
 
         // reloj y nombre
-        TableColumn<VectorEstadoDtoActual, String> nombreEvEcolumna = new TableColumn<>();
-        nombreEvEcolumna.setCellValueFactory(new PropertyValueFactory<>("nombreEvento"));
-        nombreEvEcolumna.setText("Nom. Evento");
+        TableColumn<VectorEstadoDtoActual, String> nombreEvColumna = new TableColumn<>();
+        nombreEvColumna.setCellValueFactory(new PropertyValueFactory<>("nombreEvento"));
+        nombreEvColumna.setText("Nom. Evento");
         
         TableColumn<VectorEstadoDtoActual, Float> relojColumna = new TableColumn<>();
         relojColumna.setCellValueFactory(new PropertyValueFactory<>("reloj"));
@@ -264,9 +272,49 @@ public class ResultadoFxController {
         maxColaPanaderia.setCellValueFactory(new PropertyValueFactory<>("maximoLargoColaPanaderia"));
         maxColaPanaderia.setText("Max. Cola Panaderia");
 
-        // falta el addAll a tv_Simulacion
+        tv_Simulacion.getColumns().addAll(nombreEvColumna, relojColumna,
+                rndEventoLlegadaCliente, tiempoEventoLlegadaCliente, momentoEventoLLegadaCliente, rndDestinoCliente, destinoCliente,
+                rndEventoFinAtDespensa, tiempoEventoFinAtDespensa, momentoEventoFinAtDespensa,
+                rndEventoFinAtPanaderia1, tiempoEventoFinAtPanaderia1, momentoEventoFinAtPanaderia1,
+                rndEventoFinAtPanaderia2, tiempoEventoFinAtPanaderia2, momentoEventoFinAtPanaderia2,
+                rndCantidadArticulos, cantidadArticulos, demoraArt1, demoraArt2, demoraArt3, tiempoAtencionCaja, momentoAtencionCaja,
+                colaDespensa, estadoDespensa, clienteEmpleadoDespensa,
+                colaPanaderia, idPanaderia1, estadoPanaderia1, clienteEmpleadoPanaderia1, idPanaderia2, estadoPanaderia2, clienteEmpleadoPanaderia2,
+                colaCaja, estadoCaja, clienteCaja,
+                contadorArticulos, acumuladorOciosoCaja, maxColaDespensa, maxColaPanaderia);
 
 
+        tv_Simulacion.refresh();
+
+    }
+
+    private void calcularEstadisticas(VectorEstadoNegocio vectorEstadoNegocio){
+
+        int cantidadArticulos = vectorEstadoNegocio.getContadorArticulos();
+
+        float porcentajeOciosoCaja = vectorEstadoNegocio.getAcumuladorTiempoOciosoCaja()*100/ vectorEstadoNegocio.getReloj();
+
+        int colaMaxDespensa = vectorEstadoNegocio.getMaximoLargoColaDespensa();
+
+        int colaMaxPanaderia = vectorEstadoNegocio.getMaximoLargoColaPanaderia();
+
+        String cajaAyudaA;
+        if (colaMaxDespensa >= colaMaxPanaderia){
+            cajaAyudaA = "Despensa";
+        }
+        else{
+            cajaAyudaA = "Panaderia";
+        }
+
+        tf_cantidadArticulos.setText(Integer.toString(cantidadArticulos));
+
+        tf_porcentajeOciosoCaja.setText(Float.toString(porcentajeOciosoCaja));
+
+        tf_colaMaxDespensa.setText(Integer.toString(colaMaxDespensa));
+
+        tf_colaMaxPanaderia.setText(Integer.toString(colaMaxPanaderia));
+
+        tf_cajaAyudaA.setText(cajaAyudaA);
     }
 
 

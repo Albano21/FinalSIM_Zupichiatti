@@ -168,9 +168,103 @@ public class ResultadoFxController {
         cantidadArticulos.setCellValueFactory(cellData -> cellData.getValue().getEventoFinAtencionCaja()==null? new SimpleStringProperty(""): new SimpleStringProperty(Integer.toString(cellData.getValue().getEventoFinAtencionCaja().getCantidadArticulos())));
         cantidadArticulos.setText("Cantidad Articulos");
 
+        TableColumn<VectorEstadoDtoActual, String> demoraArt1 = new TableColumn<>();
+        demoraArt1.setCellValueFactory(cellData -> cellData.getValue().getEventoFinAtencionCaja()==null? new SimpleStringProperty(""): new SimpleStringProperty(Float.toString(cellData.getValue().getEventoFinAtencionCaja().getTiemposDemoraPorArticulo()[0])));
+        demoraArt1.setText("Demora Art. 1");
+
+        TableColumn<VectorEstadoDtoActual, String> demoraArt2 = new TableColumn<>();
+        demoraArt2.setCellValueFactory(cellData -> cellData.getValue().getEventoFinAtencionCaja()==null? new SimpleStringProperty(""): new SimpleStringProperty(Float.toString(cellData.getValue().getEventoFinAtencionCaja().getTiemposDemoraPorArticulo()[1])));
+        demoraArt2.setText("Demora Art. 2");
+
+        TableColumn<VectorEstadoDtoActual, String> demoraArt3 = new TableColumn<>();
+        demoraArt3.setCellValueFactory(cellData -> cellData.getValue().getEventoFinAtencionCaja()==null? new SimpleStringProperty(""): new SimpleStringProperty(Float.toString(cellData.getValue().getEventoFinAtencionCaja().getTiemposDemoraPorArticulo()[2])));
+        demoraArt3.setText("Demora Art. 3");
+
+        TableColumn<VectorEstadoDtoActual, String> tiempoAtencionCaja = new TableColumn<>();
+        tiempoAtencionCaja.setCellValueFactory(cellData -> cellData.getValue().getEventoFinAtencionCaja()==null? new SimpleStringProperty(""): new SimpleStringProperty(Float.toString(cellData.getValue().getEventoFinAtencionCaja().getTiempoAtencionCaja())));
+        tiempoAtencionCaja.setText("Tiempo Atencion Caja");
+
+        TableColumn<VectorEstadoDtoActual, String> momentoAtencionCaja = new TableColumn<>();
+        momentoAtencionCaja.setCellValueFactory(cellData -> cellData.getValue().getEventoFinAtencionCaja()==null? new SimpleStringProperty(""): new SimpleStringProperty(Float.toString(cellData.getValue().getEventoFinAtencionCaja().getMomentoEvento())));
+        momentoAtencionCaja.setText("Momento Atencion Caja");
 
 
+        // Servidores
+        // Empleado Despensa
+        TableColumn<VectorEstadoDtoActual, String> colaDespensa = new TableColumn<>();
+        colaDespensa.setCellValueFactory(new PropertyValueFactory<>("colaDespensa"));
+        colaDespensa.setText("Cola Despensa");
 
+        TableColumn<VectorEstadoDtoActual, String> estadoDespensa = new TableColumn<>();
+        estadoDespensa.setCellValueFactory(cellData -> cellData.getValue().getEmpleadoDespensa()==null? new SimpleStringProperty(""): new SimpleStringProperty(cellData.getValue().getEmpleadoDespensa().getEstado().getEstado()));
+        estadoDespensa.setText("Estado Despensa");
+
+        TableColumn<VectorEstadoDtoActual,String> clienteEmpleadoDespensa = new TableColumn<>();
+        clienteEmpleadoDespensa.setCellValueFactory(cellData -> cellData.getValue().getEmpleadoDespensa() == null || cellData.getValue().getEmpleadoDespensa().getClienteActual() == null ? new SimpleStringProperty("") : new SimpleStringProperty(Integer.toString(cellData.getValue().getEmpleadoDespensa().getClienteActual().getNumeroCliente())));
+        clienteEmpleadoDespensa.setText("Cliente Despensa");
+
+        // Panaderias
+        TableColumn<VectorEstadoDtoActual, String> colaPanaderia = new TableColumn<>();
+        colaPanaderia.setCellValueFactory(new PropertyValueFactory<>("colaPanaderia"));
+        colaPanaderia.setText("Cola Panaderia");
+
+        // Empleado Panaderia 1
+        TableColumn<VectorEstadoDtoActual, String> idPanaderia1 = new TableColumn<>();
+        idPanaderia1.setCellValueFactory(cellData -> cellData.getValue().getEmpleadoPanaderia1()==null? new SimpleStringProperty(""): new SimpleStringProperty(Integer.toString(cellData.getValue().getEmpleadoPanaderia1().getId())));
+        idPanaderia1.setText("Id Panaderia");
+
+        TableColumn<VectorEstadoDtoActual, String> estadoPanaderia1 = new TableColumn<>();
+        estadoPanaderia1.setCellValueFactory(cellData -> cellData.getValue().getEmpleadoPanaderia1()==null? new SimpleStringProperty(""): new SimpleStringProperty(cellData.getValue().getEmpleadoPanaderia1().getEstado().getEstado()));
+        estadoPanaderia1.setText("Estado Panaderia 1");
+
+        TableColumn<VectorEstadoDtoActual,String> clienteEmpleadoPanaderia1 = new TableColumn<>();
+        clienteEmpleadoPanaderia1.setCellValueFactory(cellData -> cellData.getValue().getEmpleadoPanaderia1() == null || cellData.getValue().getEmpleadoPanaderia1().getClienteActual() == null ? new SimpleStringProperty("") : new SimpleStringProperty(Integer.toString(cellData.getValue().getEmpleadoPanaderia1().getClienteActual().getNumeroCliente())));
+        clienteEmpleadoPanaderia1.setText("Cliente Panaderia 1");
+
+        // Empleado Panaderia 2
+        TableColumn<VectorEstadoDtoActual, String> idPanaderia2 = new TableColumn<>();
+        idPanaderia2.setCellValueFactory(cellData -> cellData.getValue().getEmpleadoPanaderia2()==null? new SimpleStringProperty(""): new SimpleStringProperty(Integer.toString(cellData.getValue().getEmpleadoPanaderia2().getId())));
+        idPanaderia2.setText("Id Panaderia");
+
+        TableColumn<VectorEstadoDtoActual, String> estadoPanaderia2 = new TableColumn<>();
+        estadoPanaderia2.setCellValueFactory(cellData -> cellData.getValue().getEmpleadoPanaderia2()==null? new SimpleStringProperty(""): new SimpleStringProperty(cellData.getValue().getEmpleadoPanaderia2().getEstado().getEstado()));
+        estadoPanaderia2.setText("Estado Panaderia 2");
+
+        TableColumn<VectorEstadoDtoActual,String> clienteEmpleadoPanaderia2 = new TableColumn<>();
+        clienteEmpleadoPanaderia2.setCellValueFactory(cellData -> cellData.getValue().getEmpleadoPanaderia2() == null || cellData.getValue().getEmpleadoPanaderia2().getClienteActual() == null ? new SimpleStringProperty("") : new SimpleStringProperty(Integer.toString(cellData.getValue().getEmpleadoPanaderia2().getClienteActual().getNumeroCliente())));
+        clienteEmpleadoPanaderia2.setText("Cliente Panaderia 2");
+
+        // Empleado Caja
+        TableColumn<VectorEstadoDtoActual, String> colaCaja = new TableColumn<>();
+        colaCaja.setCellValueFactory(new PropertyValueFactory<>("colaCaja"));
+        colaCaja.setText("Cola Caja");
+
+        TableColumn<VectorEstadoDtoActual, String> estadoCaja = new TableColumn<>();
+        estadoCaja.setCellValueFactory(cellData -> cellData.getValue().getEmpleadoCaja()==null? new SimpleStringProperty(""): new SimpleStringProperty(cellData.getValue().getEmpleadoCaja().getEstado().getEstado()));
+        estadoCaja.setText("Estado Caja");
+
+        TableColumn<VectorEstadoDtoActual,String> clienteCaja = new TableColumn<>();
+        clienteCaja.setCellValueFactory(cellData -> cellData.getValue().getEmpleadoCaja() == null || cellData.getValue().getEmpleadoCaja().getClienteActual() == null ? new SimpleStringProperty("") : new SimpleStringProperty(Integer.toString(cellData.getValue().getEmpleadoCaja().getClienteActual().getNumeroCliente())));
+        clienteCaja.setText("Cliente Caja");
+
+        // Contadores y acumuladores
+        TableColumn<VectorEstadoDtoActual, String> contadorArticulos = new TableColumn<>();
+        contadorArticulos.setCellValueFactory(new PropertyValueFactory<>("contadorArticulos"));
+        contadorArticulos.setText("Contador Articulos");
+
+        TableColumn<VectorEstadoDtoActual, String> acumuladorOciosoCaja = new TableColumn<>();
+        acumuladorOciosoCaja.setCellValueFactory(new PropertyValueFactory<>("acumuladorTiempoOciosoCaja"));
+        acumuladorOciosoCaja.setText("Acum. Tiempo Ocioso Caja");
+
+        TableColumn<VectorEstadoDtoActual, String> maxColaDespensa = new TableColumn<>();
+        maxColaDespensa.setCellValueFactory(new PropertyValueFactory<>("maximoLargoColaDespensa"));
+        maxColaDespensa.setText("Max. Cola Despensa");
+
+        TableColumn<VectorEstadoDtoActual, String> maxColaPanaderia = new TableColumn<>();
+        maxColaPanaderia.setCellValueFactory(new PropertyValueFactory<>("maximoLargoColaPanaderia"));
+        maxColaPanaderia.setText("Max. Cola Panaderia");
+
+        // falta el addAll a tv_Simulacion
 
 
     }

@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="549.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalsim.finalsim_zupichiatti.fxcontroller.ResultadoFxController">
    <children>
       <VBox layoutX="-2.0" layoutY="-5.0" prefHeight="580.0" prefWidth="870.0">

@@ -177,13 +177,25 @@ public class ResultadoFxController {
         cantidadArticulos.setCellValueFactory(cellData -> cellData.getValue().getEventoFinAtencionCaja()==null? new SimpleStringProperty(""): new SimpleStringProperty(Integer.toString(cellData.getValue().getEventoFinAtencionCaja().getCantidadArticulos())));
         cantidadArticulos.setText("Cantidad Articulos");
 
+        TableColumn<VectorEstadoDtoActual, String > rndArt1 = new TableColumn<>();
+        rndArt1.setCellValueFactory(cellData -> cellData.getValue().getEventoFinAtencionCaja()==null || cellData.getValue().getEventoFinAtencionCaja().getRandomsDemoraPorArticulo()[0] == null ? new SimpleStringProperty(""): new SimpleStringProperty(Float.toString(cellData.getValue().getEventoFinAtencionCaja().getRandomsDemoraPorArticulo()[0].getRandom())));
+        rndArt1.setText("RND Art. 1");
+
         TableColumn<VectorEstadoDtoActual, String> demoraArt1 = new TableColumn<>();
         demoraArt1.setCellValueFactory(cellData -> cellData.getValue().getEventoFinAtencionCaja()==null? new SimpleStringProperty(""): new SimpleStringProperty(Float.toString(cellData.getValue().getEventoFinAtencionCaja().getTiemposDemoraPorArticulo()[0])));
         demoraArt1.setText("Demora Art. 1");
 
+        TableColumn<VectorEstadoDtoActual, String > rndArt2 = new TableColumn<>();
+        rndArt2.setCellValueFactory(cellData -> cellData.getValue().getEventoFinAtencionCaja()==null || cellData.getValue().getEventoFinAtencionCaja().getRandomsDemoraPorArticulo()[1] == null ? new SimpleStringProperty(""): new SimpleStringProperty(Float.toString(cellData.getValue().getEventoFinAtencionCaja().getRandomsDemoraPorArticulo()[1].getRandom())));
+        rndArt2.setText("RND Art. 2");
+
         TableColumn<VectorEstadoDtoActual, String> demoraArt2 = new TableColumn<>();
         demoraArt2.setCellValueFactory(cellData -> cellData.getValue().getEventoFinAtencionCaja()==null? new SimpleStringProperty(""): new SimpleStringProperty(Float.toString(cellData.getValue().getEventoFinAtencionCaja().getTiemposDemoraPorArticulo()[1])));
         demoraArt2.setText("Demora Art. 2");
+
+        TableColumn<VectorEstadoDtoActual, String > rndArt3 = new TableColumn<>();
+        rndArt3.setCellValueFactory(cellData -> cellData.getValue().getEventoFinAtencionCaja()==null || cellData.getValue().getEventoFinAtencionCaja().getRandomsDemoraPorArticulo()[2] == null ? new SimpleStringProperty(""): new SimpleStringProperty(Float.toString(cellData.getValue().getEventoFinAtencionCaja().getRandomsDemoraPorArticulo()[2].getRandom())));
+        rndArt3.setText("RND Art. 3");
 
         TableColumn<VectorEstadoDtoActual, String> demoraArt3 = new TableColumn<>();
         demoraArt3.setCellValueFactory(cellData -> cellData.getValue().getEventoFinAtencionCaja()==null? new SimpleStringProperty(""): new SimpleStringProperty(Float.toString(cellData.getValue().getEventoFinAtencionCaja().getTiemposDemoraPorArticulo()[2])));
@@ -278,7 +290,7 @@ public class ResultadoFxController {
                 rndEventoFinAtDespensa, tiempoEventoFinAtDespensa, momentoEventoFinAtDespensa,
                 rndEventoFinAtPanaderia1, tiempoEventoFinAtPanaderia1, momentoEventoFinAtPanaderia1,
                 rndEventoFinAtPanaderia2, tiempoEventoFinAtPanaderia2, momentoEventoFinAtPanaderia2,
-                rndCantidadArticulos, cantidadArticulos, demoraArt1, demoraArt2, demoraArt3, tiempoAtencionCaja, momentoAtencionCaja,
+                rndCantidadArticulos, cantidadArticulos, rndArt1, demoraArt1, rndArt2, demoraArt2, rndArt3, demoraArt3, tiempoAtencionCaja, momentoAtencionCaja,
                 colaDespensa, estadoDespensa, clienteEmpleadoDespensa,
                 colaPanaderia, idPanaderia1, estadoPanaderia1, clienteEmpleadoPanaderia1, idPanaderia2, estadoPanaderia2, clienteEmpleadoPanaderia2,
                 colaCaja, estadoCaja, clienteCaja,

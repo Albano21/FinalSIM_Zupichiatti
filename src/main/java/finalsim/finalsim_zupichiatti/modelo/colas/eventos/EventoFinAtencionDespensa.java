@@ -89,7 +89,7 @@ public class EventoFinAtencionDespensa extends Evento{
             CambioDistribucionNormalConvolucion generadorNormal = (CambioDistribucionNormalConvolucion) generadoresVariableAleatoria.get(ConstantesCambioDistribucion.NORMAL_CONVOLUCION);
             // calculo variable demora por articulo y arma los vectores de randoms y demora por articulo
             VaribaleAleatoria tiempoAtencionArticulo;
-            Pseudoaleatorio[] randomsDemoraPorArticulo = new Pseudoaleatorio[cantidadArticulos];
+            Pseudoaleatorio[] randomsDemoraPorArticulo = new Pseudoaleatorio[3];
             float[] tiemposDemoraPorArticulo = new float[3];
             for (int i = 0; i < cantidadArticulos; i++) {
                 tiempoAtencionArticulo = generadorNormal

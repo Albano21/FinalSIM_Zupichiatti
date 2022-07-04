@@ -92,6 +92,15 @@ public class MainFxController implements Initializable {
             return t;
         };
 
+        UnaryOperator<TextFormatter.Change> intFilter = t -> {
+            String newText = t.getControlNewText();
+            if(newText.matches("([0-9]*)?")) {
+                return t;
+            }
+            return null;
+        };
+
+
         setTfTextFormatter(tf_mediaLlegada, floatFilter);
         setTfTextFormatter(tf_minDemoraDespensa, floatFilter);
         setTfTextFormatter(tf_maxDemoraDespensa, floatFilter);
@@ -99,9 +108,9 @@ public class MainFxController implements Initializable {
         setTfTextFormatter(tf_maxDemoraPanaderia, floatFilter);
         setTfTextFormatter(tf_MediaDemoraCaja, floatFilter);
         setTfTextFormatter(tf_desviacionEstandarCaja, floatFilter);
-        setTfTextFormatter(tf_cantMinutos, floatFilter);
-        setTfTextFormatter(tf_cantidadFilas, floatFilter);
-        setTfTextFormatter(tf_primerFila, floatFilter);
+        setTfTextFormatter(tf_cantMinutos, intFilter);
+        setTfTextFormatter(tf_cantidadFilas, intFilter);
+        setTfTextFormatter(tf_primerFila, intFilter);
 
 
 

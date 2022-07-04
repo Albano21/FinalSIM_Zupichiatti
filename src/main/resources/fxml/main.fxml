@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="657.0" prefWidth="515.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalsim.finalsim_zupichiatti.fxcontroller.MainFxController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="657.0" prefWidth="515.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalsim.finalsim_zupichiatti.fxcontroller.MainFxController">
    <children>
       <VBox layoutX="-1.0" layoutY="-1.0" prefHeight="666.0" prefWidth="516.0">
          <children>
@@ -30,13 +30,13 @@
             </AnchorPane>
             <AnchorPane prefHeight="404.0" prefWidth="516.0">
                <children>
-                  <TitledPane animated="false" collapsible="false" prefHeight="371.0" prefWidth="514.0" text="Parametros de Negocio">
+                  <TitledPane animated="false" collapsible="false" prefHeight="342.0" prefWidth="514.0" text="Parametros de Negocio">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="383.0" prefWidth="513.0">
                            <children>
-                              <VBox layoutY="2.0" prefHeight="338.0" prefWidth="514.0">
+                              <VBox layoutY="2.0" prefHeight="311.0" prefWidth="514.0">
                                  <children>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="398.0">
+                                    <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="398.0">
                                        <children>
                                           <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="20.0" prefWidth="270.0" text="    Media Llegada por Mnuto:">
                                              <font>
@@ -46,7 +46,7 @@
                                           <TextField fx:id="tf_mediaLlegada" />
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="398.0">
+                                    <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="398.0">
                                        <children>
                                           <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="20.0" prefWidth="270.0" text="    Minimo Demora Despensa:">
                                              <font>
@@ -56,7 +56,7 @@
                                           <TextField fx:id="tf_minDemoraDespensa" />
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="398.0">
+                                    <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="398.0">
                                        <children>
                                           <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="20.0" prefWidth="270.0" text="    Maximo Demora Despensa:">
                                              <font>
@@ -66,7 +66,7 @@
                                           <TextField fx:id="tf_maxDemoraDespensa" />
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="398.0">
+                                    <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="398.0">
                                        <children>
                                           <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="20.0" prefWidth="270.0" text="    Minimo Demora Panaderia:">
                                              <font>
@@ -76,7 +76,7 @@
                                           <TextField fx:id="tf_minDemoraPanaderia" />
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="398.0">
+                                    <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="398.0">
                                        <children>
                                           <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="20.0" prefWidth="270.0" text="    Maximo Demora Panaderia:">
                                              <font>
@@ -86,7 +86,7 @@
                                           <TextField fx:id="tf_maxDemoraPanaderia" />
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="398.0">
+                                    <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="398.0">
                                        <children>
                                           <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="20.0" prefWidth="270.0" text="    Media Demora Caja:">
                                              <font>
@@ -96,7 +96,7 @@
                                           <TextField fx:id="tf_MediaDemoraCaja" />
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="514.0">
+                                    <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="514.0">
                                        <children>
                                           <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="20.0" prefWidth="270.0" text="    Desviacion Estandar Demora Caja:">
                                              <font>
@@ -119,13 +119,13 @@
             </AnchorPane>
             <AnchorPane prefHeight="174.0" prefWidth="516.0">
                <children>
-                  <TitledPane animated="false" collapsible="false" prefHeight="174.0" prefWidth="516.0" text="Parametros de Simulacion">
+                  <TitledPane animated="false" collapsible="false" prefHeight="159.0" prefWidth="516.0" text="Parametros de Simulacion">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="118.0" prefWidth="514.0">
                            <children>
-                              <VBox layoutX="1.0" layoutY="-2.0" prefHeight="146.0" prefWidth="516.0">
+                              <VBox layoutX="1.0" layoutY="-2.0" prefHeight="133.0" prefWidth="516.0">
                                  <children>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="524.0">
+                                    <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="524.0">
                                        <children>
                                           <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="20.0" prefWidth="270.0" text="    Cantidad Minutos:">
                                              <font>
@@ -135,7 +135,7 @@
                                           <TextField fx:id="tf_cantMinutos" />
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="524.0">
+                                    <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="524.0">
                                        <children>
                                           <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="20.0" prefWidth="270.0" text="    Cantidad de Filas a Mostrar:">
                                              <font>
@@ -145,7 +145,7 @@
                                           <TextField fx:id="tf_cantidadFilas" />
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="524.0">
+                                    <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="524.0">
                                        <children>
                                           <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="20.0" prefWidth="270.0" text="    Primer Fila a Mostrar:">
                                              <font>

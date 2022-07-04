@@ -118,7 +118,7 @@ public class ControladorFinalSim {
         Pseudoaleatorio randomProxDestino = generadorRandom.siguientePseudoAleatoreo(randomCUBase , parametrosGenerador);
         // aca podria parametrizar los valores desde y hasta para ver cual es el destino
         // tendria que pasarlo dentro de parametros negocio
-        if (randomProxDestino.getRandom() >= 0 && randomProxDestino.getRandom() <= 0.34 ){
+        if (randomProxDestino.getRandom() >= 0 && randomProxDestino.getRandom() < 0.35 ){
             //aca tengo que setear que va a la despensa
             EventoFinAtencionDespensa eventoFinAtencionDespensa = new EventoFinAtencionDespensa();
             evento.setRandomDestinoCliente(randomProxDestino);

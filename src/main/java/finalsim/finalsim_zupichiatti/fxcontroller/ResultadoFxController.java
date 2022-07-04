@@ -81,6 +81,7 @@ public class ResultadoFxController {
         vectorEstadoDtoActual.setContadorClientes(vector.getContadorClientes());
 
         // set Eventos
+        vectorEstadoDtoActual.setEventoLlegadaCliente(vector.getProximaLlegadaCliente());
         vectorEstadoDtoActual.setEventoFinAtencionDespensa(vector.getFinAtencionDespensa());
         vectorEstadoDtoActual.setEventoFinAtencionPanaderia1(vector.getFinAtencionPanaderia()[0]);
         vectorEstadoDtoActual.setEventoFinAtencionPanaderia2(vector.getFinAtencionPanaderia()[1]);

@@ -69,7 +69,7 @@ public class EventoLlegadaCliente extends Evento{
         Pseudoaleatorio randomProxDestino = generadorRandom.siguientePseudoAleatoreo(randomDestinoCliente, parametrosGenerador);
         // aca podria parametrizar los valores desde y hasta para ver cual es el destino
         // tendria que pasarlo dentro de parametros negocio
-        if (randomProxDestino.getRandom() >= 0 && randomProxDestino.getRandom() <= 0.34 ){
+        if (randomProxDestino.getRandom() >= 0 && randomProxDestino.getRandom() < 0.35 ){
             //aca tengo que setear que va a la despensa
             EventoFinAtencionDespensa eventoFinAtencionDespensa = new EventoFinAtencionDespensa();
             proximaLlegada.setRandomDestinoCliente(randomProxDestino);
@@ -127,7 +127,7 @@ public class EventoLlegadaCliente extends Evento{
                 vectorEstadoActual.actualizarEventoFinAtencionDespensa(eventoFinAtencionDespensa);
                 heapEventos.add(eventoFinAtencionDespensa);
             }
-            cliente.setNumeroCliente(vectorEstadoActual.getProximoNumeroCliente());
+            cliente.setNumeroCliente(vectorEstadoActual.getContadorClientes());
             vectorEstadoActual.setSiguientePseudoCU(randomCUBase);
             return vectorEstadoActual;
         }
@@ -167,7 +167,9 @@ public class EventoLlegadaCliente extends Evento{
                 vectorEstadoActual.actualizarEventoFinAtencionPanaderia(eventoFinAtencionPanaderia, empleadoPanaderia);
                 heapEventos.add(eventoFinAtencionPanaderia);
             }
-            cliente.setNumeroCliente(vectorEstadoActual.getProximoNumeroCliente());
+            //cliente.setNumeroCliente(vectorEstadoActual.getProximoNumeroCliente());
+
+            cliente.setNumeroCliente(vectorEstadoActual.getContadorClientes());
             vectorEstadoActual.setSiguientePseudoCU(randomCUBase);
             return vectorEstadoActual;
         }

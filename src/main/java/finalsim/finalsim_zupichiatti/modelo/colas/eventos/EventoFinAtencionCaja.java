@@ -50,7 +50,7 @@ public class EventoFinAtencionCaja extends Evento{
         VectorEstadoNegocio vectorEstadoActual = (VectorEstadoNegocio) estadoAnterior.clone();
         vectorEstadoActual.setReloj(this.momentoEvento);
         vectorEstadoActual.setNombreEvento(this.nombreEvento);
-        Servidor empleadoCajaAnterior = cliente.getServidorActual();
+        //Servidor empleadoCajaAnterior = cliente.getServidorActual();
         Cliente clienteActual = vectorEstadoActual.buscarClientePorId(cliente.getNumeroCliente());
         Servidor empleadoCaja = vectorEstadoActual.getEmpleadoCaja();
 

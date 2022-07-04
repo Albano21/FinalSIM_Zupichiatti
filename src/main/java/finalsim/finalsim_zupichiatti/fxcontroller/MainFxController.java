@@ -1,21 +1,31 @@
 package finalsim.finalsim_zupichiatti.fxcontroller;
 
 import finalsim.finalsim_zupichiatti.controller.ControladorFinalSim;
+import finalsim.finalsim_zupichiatti.controller.utils.ConstantesGenerador;
 import finalsim.finalsim_zupichiatti.modelo.ParametrosGenerador;
 import finalsim.finalsim_zupichiatti.modelo.colas.ParametrosNegocio;
+import finalsim.finalsim_zupichiatti.modelo.colas.VectorEstadoNegocio;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
 import java.awt.*;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 
@@ -30,7 +40,7 @@ public class MainFxController implements Initializable {
     private ApplicationContext applicationContext;
 
     @FXML
-    private javafx.scene.control.TextField tf_mediaLlegada;
+    private TextField tf_mediaLlegada;
 
     @FXML
     private TextField tf_minDemoraDespensa;
@@ -58,6 +68,9 @@ public class MainFxController implements Initializable {
 
     @FXML
     private TextField tf_primerFila;
+
+    @Value("classpath:/fxml/resultadoSimulacion.fxml")
+    private Resource modalResultado;
 
 
     @Override
@@ -90,6 +103,9 @@ public class MainFxController implements Initializable {
         setTfTextFormatter(tf_cantidadFilas, floatFilter);
         setTfTextFormatter(tf_primerFila, floatFilter);
 
+
+
+
     }
 
     private void setTfTextFormatter(TextField textField, UnaryOperator<TextFormatter.Change> floatFilter){
@@ -100,10 +116,37 @@ public class MainFxController implements Initializable {
     @FXML
     void generarSimulacion(ActionEvent event){
         ParametrosNegocio parametrosNegocio = new ParametrosNegocio();
-        //...
+        obtenerParametrosNegocio(parametrosNegocio);
+        ParametrosGenerador parametrosGenerador = new ParametrosGenerador();
+        parametrosGenerador.setMetodoGeneradorRandom(ConstantesGenerador.LENGUAJE);
+        parametrosGenerador.setPresicion(4);
+        parametrosGenerador.setN(1);
+
+        List<VectorEstadoNegocio> simulacion = controladorFinalSim
+                .generarSimulacion(parametrosNegocio, parametrosGenerador);
+
+        Stage modalStage = new Stage();
+        ResultadoFxController modalResultadoSimulacion = setModalScene(modalStage);
+        modalResultadoSimulacion.mostrarResultadoSimulacion(simulacion);
+        modalStage.showAndWait();
+
     }
 
     // falta el setModalScene()
+    @SneakyThrows
+    private ResultadoFxController setModalScene(Stage modalStage){
+
+        FXMLLoader fxmlLoader = new FXMLLoader(modalResultado.getURL());
+        fxmlLoader.setControllerFactory(applicationContext::getBean);
+
+        Parent parent = fxmlLoader.load();
+        ResultadoFxController resultadoSimulacion = (ResultadoFxController) fxmlLoader.getController();
+        modalStage.setScene(new Scene(parent, 600, 400));
+        modalStage.centerOnScreen();
+        modalStage.setMaximized(true);
+
+        return resultadoSimulacion;
+    }
 
     private void obtenerParametrosNegocio(ParametrosNegocio parametrosNegocio){
 
@@ -116,7 +159,7 @@ public class MainFxController implements Initializable {
             float mediaCaja = Float.parseFloat(tf_MediaDemoraCaja.getText().trim());
             float desvEstCaja = Float.parseFloat(tf_desviacionEstandarCaja.getText().trim());
 
-            float cantMinutos = Float.parseFloat(tf_minDemoraDespensa.getText().trim());
+            float cantMinutos = Float.parseFloat(tf_cantMinutos.getText().trim());
             int cantFilas = Integer.parseInt(tf_cantidadFilas.getText().trim());
             int primerFila = Integer.parseInt(tf_primerFila.getText().trim());
 

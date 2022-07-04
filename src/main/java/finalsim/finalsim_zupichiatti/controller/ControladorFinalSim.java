@@ -111,8 +111,26 @@ public class ControladorFinalSim {
         evento.setMomentoEvento(varibaleAleatoria.getRandomGenerado());
 
          */
+        evento.setRandomProxLlegada(randomCUBase);
         evento.setTiempoHastaProximaLlegada(3);
         evento.setMomentoEvento(3);
+
+        Pseudoaleatorio randomProxDestino = generadorRandom.siguientePseudoAleatoreo(randomCUBase , parametrosGenerador);
+        // aca podria parametrizar los valores desde y hasta para ver cual es el destino
+        // tendria que pasarlo dentro de parametros negocio
+        if (randomProxDestino.getRandom() >= 0 && randomProxDestino.getRandom() <= 0.34 ){
+            //aca tengo que setear que va a la despensa
+            EventoFinAtencionDespensa eventoFinAtencionDespensa = new EventoFinAtencionDespensa();
+            evento.setRandomDestinoCliente(randomProxDestino);
+            evento.setDestinoCliente(eventoFinAtencionDespensa);
+        }
+        else{
+            EventoFinAtencionPanaderia eventoFinAtencionPanaderia = new EventoFinAtencionPanaderia();
+            evento.setRandomDestinoCliente(randomProxDestino);
+            evento.setDestinoCliente(eventoFinAtencionPanaderia);
+
+        }
+
     }
 
     private EventoFinSimulacion generarEventoFinal(ParametrosNegocio parametrosNegocio){
@@ -135,7 +153,10 @@ public class ControladorFinalSim {
         vectorEstadoNegocio.setEmpleadosPanaderia(this.generarEmpleadosPanaderia());
         vectorEstadoNegocio.setEmpleadoCaja(this.generarEmpleadoCaja());
         vectorEstadoNegocio.setClientes(new LinkedList<>());
+
+        //vectorEstadoNegocio.setFinAtencionDespensa(new EventoFinAtencionDespensa());
         this.inicializarVectorDeEventos(vectorEstadoNegocio, parametrosNegocio);
+        //vectorEstadoNegocio.setFinAtencionCaja(new EventoFinAtencionCaja());
 
         return vectorEstadoNegocio;
 

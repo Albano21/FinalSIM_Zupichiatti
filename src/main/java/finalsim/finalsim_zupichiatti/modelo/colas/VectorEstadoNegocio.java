@@ -72,6 +72,7 @@ public class VectorEstadoNegocio {
         // Eventos
         this.clonarEventos(nuevoVector);
         nuevoVector.setFinSimulacion(finSimulacion);
+
         return nuevoVector;
 
 
@@ -110,9 +111,17 @@ public class VectorEstadoNegocio {
         //aca no seria clone?
         nuevoVector.setProximaLlegadaCliente(this.getProximaLlegadaCliente());
 
-        nuevoVector.setFinAtencionDespensa((EventoFinAtencionDespensa) this.finAtencionDespensa.clone());
+        // hay que verificar si son null o no para clonarlos
+        if (this.finAtencionDespensa != null){
+            nuevoVector.setFinAtencionDespensa((EventoFinAtencionDespensa) this.finAtencionDespensa.clone());
+        }
+
         nuevoVector.setFinAtencionPanaderia(finAtencionPanaderias);
-        nuevoVector.setFinAtencionCaja((EventoFinAtencionCaja) this.finAtencionCaja.clone());
+
+        if (this.finAtencionCaja != null){
+            nuevoVector.setFinAtencionCaja((EventoFinAtencionCaja) this.finAtencionCaja.clone());
+        }
+
     }
 
     public void eliminarClienteAtendido(Cliente clienteAtencionFinalizada) {

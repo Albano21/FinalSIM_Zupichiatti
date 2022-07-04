@@ -4,6 +4,7 @@ import finalsim.finalsim_zupichiatti.controller.cambioDistribucion.CambioDistrib
 import finalsim.finalsim_zupichiatti.controller.cambioDistribucion.CambioDistribucionUniformeAB;
 import finalsim.finalsim_zupichiatti.controller.cambioDistribucion.ICambioDistribucion;
 import finalsim.finalsim_zupichiatti.controller.generadorRandom.IGeneradorRandom;
+import finalsim.finalsim_zupichiatti.controller.utils.ConstantesCambioDistribucion;
 import finalsim.finalsim_zupichiatti.modelo.ParametrosCambioDistribucion;
 import finalsim.finalsim_zupichiatti.modelo.ParametrosGenerador;
 import finalsim.finalsim_zupichiatti.modelo.Pseudoaleatorio;
@@ -51,7 +52,9 @@ public class EventoLlegadaCliente extends Evento{
         parametrosCambioDistribucion.setPresicion(parametrosGenerador.getPresicion());
         //--------------------------PROXIMA LLEGADA----------------------
         // saca el proximo random y variable para la proxima llegada
-        CambioDistribucionExponencialNeg generadorExpNeg = (CambioDistribucionExponencialNeg) generadoresVariableAleatoria.get("EXP_NEG");
+        CambioDistribucionExponencialNeg generadorExpNeg = (CambioDistribucionExponencialNeg) generadoresVariableAleatoria.get(ConstantesCambioDistribucion.EXP_NEG);
+                // new CambioDistribucionExponencialNeg();
+                //(CambioDistribucionExponencialNeg) generadoresVariableAleatoria.get("EXP_NEG");
         VaribaleAleatoria tiempoProximaLlegada = generadorExpNeg.
                 siguienteRandom(parametrosCambioDistribucion,parametrosGenerador,randomCUBase);
         randomCUBase = tiempoProximaLlegada.getSiguienteRandomBase();
@@ -85,7 +88,7 @@ public class EventoLlegadaCliente extends Evento{
         //-----------------------MANEJO LLEGADA ACTUAL-------------------
 
         // hago el generador uniforme AB que se va a usar para fin at despensa o panaderia segun corresponda
-        CambioDistribucionUniformeAB generadorUniformeAB = (CambioDistribucionUniformeAB) generadoresVariableAleatoria.get("UNIFORME");
+        CambioDistribucionUniformeAB generadorUniformeAB = (CambioDistribucionUniformeAB) generadoresVariableAleatoria.get(ConstantesCambioDistribucion.UNIFORME);
         Cliente cliente = new Cliente();
 
         //aca seria si el destino es despensa

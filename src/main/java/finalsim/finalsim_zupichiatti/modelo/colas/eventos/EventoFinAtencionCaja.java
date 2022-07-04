@@ -3,6 +3,7 @@ package finalsim.finalsim_zupichiatti.modelo.colas.eventos;
 import finalsim.finalsim_zupichiatti.controller.cambioDistribucion.CambioDistribucionNormalConvolucion;
 import finalsim.finalsim_zupichiatti.controller.cambioDistribucion.ICambioDistribucion;
 import finalsim.finalsim_zupichiatti.controller.generadorRandom.IGeneradorRandom;
+import finalsim.finalsim_zupichiatti.controller.utils.ConstantesCambioDistribucion;
 import finalsim.finalsim_zupichiatti.modelo.ParametrosCambioDistribucion;
 import finalsim.finalsim_zupichiatti.modelo.ParametrosGenerador;
 import finalsim.finalsim_zupichiatti.modelo.Pseudoaleatorio;
@@ -97,7 +98,7 @@ public class EventoFinAtencionCaja extends Evento{
             parametrosCambioDistribucion.setMedia(parametrosNegocio.getMediaDemoraCaja());
             parametrosCambioDistribucion.setDesvEst(parametrosNegocio.getDesviacionEstCaja());
             // busco el generador normal
-            CambioDistribucionNormalConvolucion generadorNormal = (CambioDistribucionNormalConvolucion) generadoresVariableAleatoria.get("NORMAL_CONVOLUCION");
+            CambioDistribucionNormalConvolucion generadorNormal = (CambioDistribucionNormalConvolucion) generadoresVariableAleatoria.get(ConstantesCambioDistribucion.NORMAL_CONVOLUCION);
             // calculo variable demora por articulo y arma los vectores de randoms y demora por articulo
             VaribaleAleatoria tiempoAtencionArticulo;
             Pseudoaleatorio[] randomsDemoraPorArticulo = new Pseudoaleatorio[cantidadArticulos];

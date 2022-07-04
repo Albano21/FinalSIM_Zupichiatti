@@ -124,7 +124,7 @@ public class EventoFinAtencionCaja extends Evento{
             eventoFinAtencionCaja.setTiemposDemoraPorArticulo(tiemposDemoraPorArticulo);
             eventoFinAtencionCaja.setTiempoAtencionCaja(tiempoAtencionCaja);
             eventoFinAtencionCaja.setMomentoEvento(vectorEstadoActual.getReloj()+eventoFinAtencionCaja.getTiempoAtencionCaja());
-            eventoFinAtencionCaja.setCliente(clienteActual);
+            eventoFinAtencionCaja.setCliente(siguienteClienteCola);
             // se actualiza el evento fin atencion caja
             vectorEstadoActual.actualizarEventoFinAtencionCaja(eventoFinAtencionCaja);
             heapEventos.add(eventoFinAtencionCaja);
@@ -150,6 +150,8 @@ public class EventoFinAtencionCaja extends Evento{
         evento.setTiemposDemoraPorArticulo(tiemposDemoraPorArticulo.clone());
         evento.setTiempoAtencionCaja(tiempoAtencionCaja);
         evento.setMomentoEvento(super.getMomentoEvento());
+
+        evento.setCliente(cliente);
 
         return evento;
 

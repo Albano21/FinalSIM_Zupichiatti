@@ -71,11 +71,11 @@ public class EventoFinAtencionDespensa extends Evento{
             // ver si esta bien pasarle el randomCUBase
             Pseudoaleatorio randomCantidadArticulos = generadorRandom.siguientePseudoAleatoreo(randomCUBase, parametrosGenerador);
             int cantidadArticulos;
-            if (randomCantidadArticulos.getRandom() <= 0.39){
+            if (randomCantidadArticulos.getRandom() < 0.4){
                 cantidadArticulos = 1;
             }
             else{
-                if(randomCantidadArticulos.getRandom() <= 0.74){
+                if(randomCantidadArticulos.getRandom() < 0.75){
                     cantidadArticulos = 2;
                 }
                 else{

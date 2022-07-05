@@ -46,8 +46,9 @@ public class ParametrosNegocio {
         if (maximoDemoraPanaderia <= minimoDemoraPanaderia || maximoDemoraPanaderia <= 0)
             stringBuilder.append("La demora maxima de panaderia debe ser mayor a la demora minima\n");
         // ver si esta bien validacion demora caja
-        if (mediaDemoraCaja < 0) stringBuilder.append("La media de demora en caja debe ser mayor a 0\n");
-        if (desviacionEstCaja < 0) stringBuilder.append("La desviacion estandar de demora en caja debe ser mayor a \n");
+        if (mediaDemoraCaja < 1) stringBuilder.append("La media de demora en caja debe ser mayor a 1\n");
+        if (desviacionEstCaja <= 0) stringBuilder.append("La desviacion estandar de demora en caja debe ser mayor a 0\n");
+        if (desviacionEstCaja >= mediaDemoraCaja) stringBuilder.append("La desviacion estandar de demora en caja debe se menor a la media\n");
 
         if (stringBuilder.length() > 0) throw new IllegalArgumentException(stringBuilder.toString());
     }

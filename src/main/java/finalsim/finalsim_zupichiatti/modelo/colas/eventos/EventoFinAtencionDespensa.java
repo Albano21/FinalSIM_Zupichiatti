@@ -102,6 +102,9 @@ public class EventoFinAtencionDespensa extends Evento{
             // calcula el tiempo total
             double tiempoAtencionCaja = 0;
             for (float t : tiemposDemoraPorArticulo) {
+                if (t < 0){
+                    t = t*(-1);
+                }
                 tiempoAtencionCaja += t;
             }
             tiempoAtencionCaja = CommonFunc.round(tiempoAtencionCaja ,4);

@@ -1,5 +1,6 @@
 package finalsim.finalsim_zupichiatti.fxcontroller;
 
+import finalsim.finalsim_zupichiatti.controller.utils.CommonFunc;
 import finalsim.finalsim_zupichiatti.dto.VectorEstadoDtoActual;
 import finalsim.finalsim_zupichiatti.modelo.colas.VectorEstadoNegocio;
 import javafx.beans.property.SimpleStringProperty;
@@ -118,7 +119,7 @@ public class ResultadoFxController {
         tiempoEventoLlegadaCliente.setText("Tiempo Llegada Cliente");
 
         TableColumn<VectorEstadoDtoActual,String> momentoEventoLLegadaCliente = new TableColumn<>();
-        momentoEventoLLegadaCliente.setCellValueFactory(cellData -> cellData.getValue().getEventoLlegadaCliente()==null ? new SimpleStringProperty("") : new SimpleStringProperty(Float.toString(cellData.getValue().getEventoLlegadaCliente().getMomentoEvento())));
+        momentoEventoLLegadaCliente.setCellValueFactory(cellData -> cellData.getValue().getEventoLlegadaCliente()==null ? new SimpleStringProperty("") : new SimpleStringProperty(Double.toString(cellData.getValue().getEventoLlegadaCliente().getMomentoEvento())));
         momentoEventoLLegadaCliente.setText("Momento Evento Llegada Cliente");
 
         TableColumn<VectorEstadoDtoActual, String> rndDestinoCliente = new TableColumn<>();
@@ -139,7 +140,7 @@ public class ResultadoFxController {
         tiempoEventoFinAtDespensa.setText("Tiempo Atencion Despensa");
 
         TableColumn<VectorEstadoDtoActual, String > momentoEventoFinAtDespensa = new TableColumn<>();
-        momentoEventoFinAtDespensa.setCellValueFactory(cellData -> cellData.getValue().getEventoFinAtencionDespensa()==null? new SimpleStringProperty(""): new SimpleStringProperty(Float.toString(cellData.getValue().getEventoFinAtencionDespensa().getMomentoEvento())));
+        momentoEventoFinAtDespensa.setCellValueFactory(cellData -> cellData.getValue().getEventoFinAtencionDespensa()==null? new SimpleStringProperty(""): new SimpleStringProperty(Double.toString(cellData.getValue().getEventoFinAtencionDespensa().getMomentoEvento())));
         momentoEventoFinAtDespensa.setText("Momento Tiempo Atencion Despensa");
 
         // Evento Fin At. Panaderia 1
@@ -152,7 +153,7 @@ public class ResultadoFxController {
         tiempoEventoFinAtPanaderia1.setText("Tiempo Atencion Panaderia 1");
 
         TableColumn<VectorEstadoDtoActual, String > momentoEventoFinAtPanaderia1 = new TableColumn<>();
-        momentoEventoFinAtPanaderia1.setCellValueFactory(cellData -> cellData.getValue().getEventoFinAtencionPanaderia1()==null? new SimpleStringProperty(""): new SimpleStringProperty(Float.toString(cellData.getValue().getEventoFinAtencionPanaderia1().getMomentoEvento())));
+        momentoEventoFinAtPanaderia1.setCellValueFactory(cellData -> cellData.getValue().getEventoFinAtencionPanaderia1()==null? new SimpleStringProperty(""): new SimpleStringProperty(Double.toString(cellData.getValue().getEventoFinAtencionPanaderia1().getMomentoEvento())));
         momentoEventoFinAtPanaderia1.setText("Momento Atencion Panaderia 1");
 
         // Evento Fin At. Panaderia 2
@@ -165,7 +166,7 @@ public class ResultadoFxController {
         tiempoEventoFinAtPanaderia2.setText("Tiempo Atencion Panaderia 2");
 
         TableColumn<VectorEstadoDtoActual, String > momentoEventoFinAtPanaderia2 = new TableColumn<>();
-        momentoEventoFinAtPanaderia2.setCellValueFactory(cellData -> cellData.getValue().getEventoFinAtencionPanaderia2()==null? new SimpleStringProperty(""): new SimpleStringProperty(Float.toString(cellData.getValue().getEventoFinAtencionPanaderia2().getMomentoEvento())));
+        momentoEventoFinAtPanaderia2.setCellValueFactory(cellData -> cellData.getValue().getEventoFinAtencionPanaderia2()==null? new SimpleStringProperty(""): new SimpleStringProperty(Double.toString(cellData.getValue().getEventoFinAtencionPanaderia2().getMomentoEvento())));
         momentoEventoFinAtPanaderia2.setText("Momento Atencion Panaderia 2");
 
         // Evento Fin At. Caja
@@ -202,11 +203,11 @@ public class ResultadoFxController {
         demoraArt3.setText("Demora Art. 3");
 
         TableColumn<VectorEstadoDtoActual, String> tiempoAtencionCaja = new TableColumn<>();
-        tiempoAtencionCaja.setCellValueFactory(cellData -> cellData.getValue().getEventoFinAtencionCaja()==null? new SimpleStringProperty(""): new SimpleStringProperty(Float.toString(cellData.getValue().getEventoFinAtencionCaja().getTiempoAtencionCaja())));
+        tiempoAtencionCaja.setCellValueFactory(cellData -> cellData.getValue().getEventoFinAtencionCaja()==null? new SimpleStringProperty(""): new SimpleStringProperty(Double.toString(cellData.getValue().getEventoFinAtencionCaja().getTiempoAtencionCaja())));
         tiempoAtencionCaja.setText("Tiempo Atencion Caja");
 
         TableColumn<VectorEstadoDtoActual, String> momentoAtencionCaja = new TableColumn<>();
-        momentoAtencionCaja.setCellValueFactory(cellData -> cellData.getValue().getEventoFinAtencionCaja()==null? new SimpleStringProperty(""): new SimpleStringProperty(Float.toString(cellData.getValue().getEventoFinAtencionCaja().getMomentoEvento())));
+        momentoAtencionCaja.setCellValueFactory(cellData -> cellData.getValue().getEventoFinAtencionCaja()==null? new SimpleStringProperty(""): new SimpleStringProperty(Double.toString(cellData.getValue().getEventoFinAtencionCaja().getMomentoEvento())));
         momentoAtencionCaja.setText("Momento Atencion Caja");
 
 
@@ -305,7 +306,8 @@ public class ResultadoFxController {
 
         int cantidadArticulos = vectorEstadoNegocio.getContadorArticulos();
 
-        float porcentajeOciosoCaja = vectorEstadoNegocio.getAcumuladorTiempoOciosoCaja()*100/ vectorEstadoNegocio.getReloj();
+        double porcentajeOciosoCaja = vectorEstadoNegocio.getAcumuladorTiempoOciosoCaja()*100/ vectorEstadoNegocio.getReloj();
+        porcentajeOciosoCaja = CommonFunc.round( porcentajeOciosoCaja ,4);
 
         int colaMaxDespensa = vectorEstadoNegocio.getMaximoLargoColaDespensa();
 
@@ -321,7 +323,7 @@ public class ResultadoFxController {
 
         tf_cantidadArticulos.setText(Integer.toString(cantidadArticulos));
 
-        tf_porcentajeOciosoCaja.setText(Float.toString(porcentajeOciosoCaja));
+        tf_porcentajeOciosoCaja.setText(Double.toString(porcentajeOciosoCaja));
 
         tf_colaMaxDespensa.setText(Integer.toString(colaMaxDespensa));
 

@@ -8,7 +8,7 @@ import lombok.Data;
 public class VectorEstadoDtoActual {
 
     private String nombreEvento;
-    private float reloj;
+    private double reloj;
 
     private EventoLlegadaCliente eventoLlegadaCliente;
     private EventoFinAtencionDespensa eventoFinAtencionDespensa;
@@ -31,7 +31,7 @@ public class VectorEstadoDtoActual {
     // punto A
     private int contadorArticulos;
     // punto B
-    private float acumuladorTiempoOciosoCaja;
+    private double acumuladorTiempoOciosoCaja;
     // punto C
     private int maximoLargoColaDespensa;
     private int maximoLargoColaPanaderia;

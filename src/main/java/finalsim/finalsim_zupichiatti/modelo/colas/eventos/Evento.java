@@ -18,7 +18,7 @@ public abstract class Evento implements Comparable<Evento>{
     //no deberá sobrescribir este ya que es el que se deberá usar para organizar
     //el heap de eventos
 
-    protected float momentoEvento;
+    protected double momentoEvento;
     protected String nombreEvento;
     protected Cliente cliente;
 
@@ -31,14 +31,14 @@ public abstract class Evento implements Comparable<Evento>{
                                                        TSBHeap<Evento> heapEventos);
     @Override
     public int compareTo(Evento evento){
-        return Float.compare(momentoEvento, evento.getMomentoEvento());
+        return Double.compare(momentoEvento, evento.getMomentoEvento());
     }
 
-    public float getMomentoEvento() {
+    public double getMomentoEvento() {
         return momentoEvento;
     }
 
-    public void setMomentoEvento(float momentoEvento) {
+    public void setMomentoEvento(double momentoEvento) {
         this.momentoEvento = momentoEvento;
     }
 

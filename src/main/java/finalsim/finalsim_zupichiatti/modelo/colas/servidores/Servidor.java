@@ -16,7 +16,7 @@ public abstract class Servidor {
 
     protected int id;
 
-    protected float momentoLiberacion;
+    protected double momentoLiberacion;
 
     public boolean estaLibre(){
         return estado.estaLibre();

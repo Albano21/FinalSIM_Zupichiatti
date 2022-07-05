@@ -3,6 +3,7 @@ package finalsim.finalsim_zupichiatti.modelo.colas.eventos;
 import finalsim.finalsim_zupichiatti.controller.cambioDistribucion.CambioDistribucionNormalConvolucion;
 import finalsim.finalsim_zupichiatti.controller.cambioDistribucion.ICambioDistribucion;
 import finalsim.finalsim_zupichiatti.controller.generadorRandom.IGeneradorRandom;
+import finalsim.finalsim_zupichiatti.controller.utils.CommonFunc;
 import finalsim.finalsim_zupichiatti.controller.utils.ConstantesCambioDistribucion;
 import finalsim.finalsim_zupichiatti.modelo.ParametrosCambioDistribucion;
 import finalsim.finalsim_zupichiatti.modelo.ParametrosGenerador;
@@ -29,7 +30,7 @@ public class EventoFinAtencionCaja extends Evento{
     private Pseudoaleatorio[] randomsDemoraPorArticulo;
 
     private float[] tiemposDemoraPorArticulo;
-    private float tiempoAtencionCaja;
+    private double tiempoAtencionCaja;
 
     private Cliente clienteAtencionFinalizada;
 
@@ -111,10 +112,11 @@ public class EventoFinAtencionCaja extends Evento{
                 randomCUBase = tiempoAtencionArticulo.getSiguienteRandomBase();
             }
             // calcula el tiempo total
-            float tiempoAtencionCaja = 0;
+            double tiempoAtencionCaja = 0;
             for (float t : tiemposDemoraPorArticulo) {
                 tiempoAtencionCaja += t;
             }
+            tiempoAtencionCaja = CommonFunc.round(tiempoAtencionCaja ,4);
 
             // crea evento fin atencion caja
             EventoFinAtencionCaja eventoFinAtencionCaja = new EventoFinAtencionCaja();
@@ -123,7 +125,9 @@ public class EventoFinAtencionCaja extends Evento{
             eventoFinAtencionCaja.setRandomsDemoraPorArticulo(randomsDemoraPorArticulo);
             eventoFinAtencionCaja.setTiemposDemoraPorArticulo(tiemposDemoraPorArticulo);
             eventoFinAtencionCaja.setTiempoAtencionCaja(tiempoAtencionCaja);
-            eventoFinAtencionCaja.setMomentoEvento(vectorEstadoActual.getReloj()+eventoFinAtencionCaja.getTiempoAtencionCaja());
+            double momentoProxEventoFinAtCaja = vectorEstadoActual.getReloj()+eventoFinAtencionCaja.getTiempoAtencionCaja();
+            momentoProxEventoFinAtCaja = CommonFunc.round(momentoProxEventoFinAtCaja ,4);
+            eventoFinAtencionCaja.setMomentoEvento(momentoProxEventoFinAtCaja);
             eventoFinAtencionCaja.setCliente(siguienteClienteCola);
             // se actualiza el evento fin atencion caja
             vectorEstadoActual.actualizarEventoFinAtencionCaja(eventoFinAtencionCaja);

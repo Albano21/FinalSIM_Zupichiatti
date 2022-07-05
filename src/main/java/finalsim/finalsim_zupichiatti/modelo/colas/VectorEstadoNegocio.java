@@ -1,5 +1,6 @@
 package finalsim.finalsim_zupichiatti.modelo.colas;
 
+import finalsim.finalsim_zupichiatti.controller.utils.CommonFunc;
 import finalsim.finalsim_zupichiatti.modelo.Pseudoaleatorio;
 import finalsim.finalsim_zupichiatti.modelo.colas.eventos.*;
 import finalsim.finalsim_zupichiatti.modelo.colas.servidores.EmpleadoPanaderia;
@@ -7,7 +8,6 @@ import finalsim.finalsim_zupichiatti.modelo.colas.servidores.Servidor;
 import lombok.Data;
 import lombok.SneakyThrows;
 
-import javax.print.PrintService;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class VectorEstadoNegocio {
 
     private String nombreEvento;
-    private float reloj;
+    private double reloj;
     // Eventos
     private EventoLlegadaCliente proximaLlegadaCliente;
     private EventoFinAtencionDespensa finAtencionDespensa;
@@ -34,7 +34,7 @@ public class VectorEstadoNegocio {
     // A)
     private int contadorArticulos;
     // B)
-    private float acumuladorTiempoOciosoCaja;
+    private double acumuladorTiempoOciosoCaja;
     // C)
     private int maximoLargoColaDespensa;
     private int maximoLargoColaPanaderia;
@@ -197,8 +197,10 @@ public class VectorEstadoNegocio {
     }
 
     public void acumularTiempoOcioso(){
-        float tiepoAAcumular = reloj - empleadoCaja.getMomentoLiberacion();
-        acumuladorTiempoOciosoCaja += tiepoAAcumular;
+        double tiempoAAcumular = reloj - empleadoCaja.getMomentoLiberacion();
+        tiempoAAcumular = CommonFunc.round(tiempoAAcumular ,4);
+        acumuladorTiempoOciosoCaja += tiempoAAcumular;
+        acumuladorTiempoOciosoCaja = CommonFunc.round(acumuladorTiempoOciosoCaja ,4);
     }
 
     public Cliente getSiguienteClienteColaDespensa(){

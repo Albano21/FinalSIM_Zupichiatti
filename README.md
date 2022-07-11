@@ -1,6 +1,9 @@
 # Final SIM
-Final de simulacion, ejercicio 29 Panaderia y Despensa.
 
-Proyecto programable para el final de la materia Simulación.
+Final programable de la materia Simulación.
+
+Proyecto desarrollado en Java utilizando Spring y JavaFX para la interfaz.
+
+Ejercicio 29 Panaderia y Despensa.
 
 Albano Zupichiatti
